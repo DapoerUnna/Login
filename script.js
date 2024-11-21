@@ -21,4 +21,8 @@ document.querySelector('form').addEventListener('submit', function(event) {
 
     // Menyimpan data pengguna di localStorage
     localStorage.setItem('userData', JSON.stringify(userData));
+    localStorage.setItem('username', username);
+    localStorage.setItem('password', password);
+
+    window.location.href = 'index.html';
 });
