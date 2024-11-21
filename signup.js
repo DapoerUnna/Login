@@ -21,8 +21,16 @@ document.querySelector('form').addEventListener('submit', function(event) {
 
     // Menyimpan data pengguna di localStorage
     localStorage.setItem('userData', JSON.stringify(userData));
-    localStorage.setItem('username', username);
-    localStorage.setItem('password', password);
+    const existingUsername = localStorage.getItem('username');
+
+            if (existingUsername && existingUsername === username) {
+                alert('Username already exists. Please choose a different username.');
+            } else {
+                // Menyimpan username dan password di localStorage
+                localStorage.setItem('username', username);
+                localStorage.setItem('password', password);
+
+                alert('Registration successful! You can now log in.');
 
     window.location.href = 'index.html';
 });
