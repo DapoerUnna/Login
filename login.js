@@ -12,7 +12,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     if (username === storedUsername && password === storedPassword) {
         alert('Login successful!');
         // Redirect ke halaman beranda atau dashboard
-        window.location.href = 'home.html'; // Ganti dengan halaman yang diinginkan
+        window.location.href = 'http://dapoerunna.id.biz.id'; // Ganti dengan halaman yang diinginkan
     } else {
         alert('Invalid username or password. Please try again.');
     }
