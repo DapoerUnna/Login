@@ -1,3 +1,8 @@
+import {addCSSInHead} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.6/element.js";
+import Swal from 'https://cdn.jsdelivr.net/npm/sweetalert2@11/src/sweetalert2.js';
+
+await addCSSInHead("https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.css");
+
 document.querySelector('form').addEventListener('submit', function(event) {
     event.preventDefault(); // Mencegah form dari pengiriman biasa
 
@@ -24,13 +29,24 @@ document.querySelector('form').addEventListener('submit', function(event) {
     const existingUsername = localStorage.getItem('username');
 
             if (existingUsername && existingUsername === username) {
-                alert('Username already exists. Please choose a different username.');
+                // Menggunakan SweetAlert2 untuk menampilkan pesan kesalahan
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Username already exists',
+                    text: 'Please choose a different username.'
+                });
             } else {
                 // Menyimpan username dan password di localStorage
                 localStorage.setItem('username', username);
                 localStorage.setItem('password', password);
 
-                alert('Registration successful! You can now log in.');
-
-    window.location.href = 'index.html';
-});
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Registration successful!',
+                    text: 'You can now log in.'
+                }).then(() => {
+                    // Redirect ke halaman login setelah registrasi
+                    window.location.href = 'index.html';
+                });
+            }
+        });

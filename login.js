@@ -1,3 +1,8 @@
+import {addCSSInHead} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.6/element.js";
+import Swal from 'https://cdn.jsdelivr.net/npm/sweetalert2@11/src/sweetalert2.js';
+
+await addCSSInHead("https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.css");
+
 document.getElementById('loginForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Mencegah form dari pengiriman biasa
 
@@ -10,10 +15,21 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
 
     // Memeriksa apakah username dan password cocok
     if (username === storedUsername && password === storedPassword) {
-        alert('Login successful!');
-        // Redirect ke halaman beranda atau dashboard
-        window.location.href = 'http://dapoerunna.id.biz.id'; // Ganti dengan halaman yang diinginkan
+        // Menggunakan SweetAlert2 untuk menampilkan pesan sukses
+        Swal.fire({
+            icon: 'success',
+            title: 'Login successful!',
+            text: 'Welcome back!'
+        }).then(() => {
+            // Redirect ke halaman beranda atau dashboard
+            window.location.href = 'http://dapoerunna.id.biz.id'; // Ganti dengan halaman yang diinginkan
+        });
     } else {
-        alert('Invalid username or password. Please try again.');
+        // Menggunakan SweetAlert2 untuk menampilkan pesan kesalahan
+        Swal.fire({
+            icon: 'error',
+            title: 'Invalid credentials',
+            text: 'Invalid username or password. Please try again.'
+        });
     }
 });
